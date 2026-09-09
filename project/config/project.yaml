@@ -1,0 +1,4 @@
+datasets:
+  - configs/churn.yaml
+  - configs/house_prices.yaml
+  - configs/wine.yaml

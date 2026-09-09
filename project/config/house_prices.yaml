@@ -1,0 +1,365 @@
+version: "1.0.0"
+task: regression
+name: 'house_prices'
+dataset:
+  path: data/house_prices.csv
+  target: SalePrice
+  split:
+    test_size: 0.2
+    random_state: 42
+  drop_columns:
+    - Id
+    - PoolQC
+    - MiscFeature
+    - Fence
+    - FireplaceQu
+    - MasVnrType
+    - Alley
+features:
+  categorial:
+    - name: MSZoning
+      dtype: object
+      values: [ 'RL' ,'RM', 'C (all)' ,'FV' ,'RH' ]
+    - name: Street
+      dtype: object
+      values: [ 'Pave' ,'Grvl' ]
+    - name: Alley
+      dtype: object
+      values: [ nan ,'Grvl' ,'Pave' ]
+    - name: LotShape
+      dtype: object
+      values: [ 'Reg' ,'IR1' ,'IR2' ,'IR3' ]
+    - name: LandContour
+      dtype: object
+      values: [ 'Lvl' ,'Bnk' ,'Low' ,'HLS' ]
+    - name: Utilities
+      dtype: object
+      values: [ 'AllPub', 'NoSeWa' ]
+    - name: LotConfig
+      dtype: object
+      values: [ 'Inside' ,'FR2' ,'Corner', 'CulDSac', 'FR3' ]
+    - name: LandSlope
+      dtype: object
+      values: [ 'Gtl' ,'Mod' ,'Sev' ]
+    - name: Neighborhood
+      dtype: object
+      values: [ 'CollgCr', 'Veenker' ,'Crawfor' ,'NoRidge', 'Mitchel', 'Somerst', 'NWAmes',
+                'OldTown' ,'BrkSide' ,'Sawyer', 'NridgHt' ,'NAmes', 'SawyerW', 'IDOTRR',
+                'MeadowV' ,'Edwards', 'Timber', 'Gilbert' ,'StoneBr' ,'ClearCr', 'NPkVill',
+                'Blmngtn' ,'BrDale' ,'SWISU' ,'Blueste' ]
+    - name: Condition1
+      dtype: object
+      values: [ 'Norm' ,'Feedr' ,'PosN' ,'Artery', 'RRAe' ,'RRNn' ,'RRAn' ,'PosA' ,'RRNe' ]
+    - name: Condition2
+      dtype: object
+      values: [ 'Norm', 'Artery' ,'RRNn' ,'Feedr' ,'PosN' ,'PosA' ,'RRAn' ,'RRAe' ]
+    - name: BldgType
+      dtype: object
+      values: [ '1Fam', '2fmCon', 'Duplex' ,'TwnhsE' ,'Twnhs' ]
+    - name: HouseStyle
+      dtype: object
+      values: [ '2Story' ,'1Story' ,'1.5Fin', '1.5Unf', 'SFoyer' ,'SLvl', '2.5Unf' ,'2.5Fin' ]
+    - name: RoofStyle
+      dtype: object
+      values: [ 'Gable', 'Hip' ,'Gambrel' ,'Mansard' ,'Flat' ,'Shed' ]
+    - name: RoofMatl
+      dtype: object
+      values: [ 'CompShg' ,'WdShngl' ,'Metal', 'WdShake', 'Membran', 'Tar&Grv', 'Roll',
+                'ClyTile' ]
+    - name: Exterior1st
+      dtype: object
+      values: [ 'VinylSd', 'MetalSd', 'Wd Sdng' ,'HdBoard' ,'BrkFace', 'WdShing', 'CemntBd',
+                'Plywood' ,'AsbShng' ,'Stucco' ,'BrkComm', 'AsphShn', 'Stone' ,'ImStucc',
+                'CBlock' ]
+    - name: Exterior2nd
+      dtype: object
+      values: [ 'VinylSd' ,'MetalSd', 'Wd Shng' ,'HdBoard', 'Plywood', 'Wd Sdng' ,'CmentBd',
+                'BrkFace' ,'Stucco' ,'AsbShng', 'Brk Cmn', 'ImStucc', 'AsphShn', 'Stone',
+                'Other' ,'CBlock' ]
+    - name: MasVnrType
+      dtype: object
+      values: [ 'BrkFace', nan ,'Stone' ,'BrkCmn' ]
+    - name: ExterQual
+      dtype: object
+      values: [ 'Gd' ,'TA' ,'Ex', 'Fa' ]
+    - name: ExterCond
+      dtype: object
+      values: [ 'TA', 'Gd' ,'Fa' ,'Po' ,'Ex' ]
+    - name: Foundation
+      dtype: object
+      values: [ 'PConc' ,'CBlock' ,'BrkTil', 'Wood', 'Slab', 'Stone' ]
+    - name: BsmtQual
+      dtype: object
+      values: [ 'Gd' ,'TA', 'Ex', nan ,'Fa' ]
+    - name: BsmtCond
+      dtype: object
+      values: [ 'TA', 'Gd' ,nan ,'Fa' ,'Po' ]
+    - name: BsmtExposure
+      dtype: object
+      values: [ 'No' ,'Gd', 'Mn', 'Av' ,nan ]
+    - name: BsmtFinType1
+      dtype: object
+      values: [ 'GLQ' ,'ALQ' ,'Unf' ,'Rec', 'BLQ', nan ,'LwQ' ]
+    - name: BsmtFinType2
+      dtype: object
+      values: [ 'Unf' ,'BLQ', nan, 'ALQ' ,'Rec', 'LwQ', 'GLQ' ]
+    - name: Heating
+      dtype: object
+      values: [ 'GasA', 'GasW' ,'Grav', 'Wall', 'OthW', 'Floor' ]
+    - name: HeatingQC
+      dtype: object
+      values: [ 'Ex', 'Gd', 'TA' ,'Fa' ,'Po' ]
+    - name: CentralAir
+      dtype: object
+      values: [ 'Y' ,'N' ]
+    - name: Electrical
+      dtype: object
+      values: [ 'SBrkr' ,'FuseF', 'FuseA', 'FuseP' ,'Mix', nan ]
+    - name: KitchenQual
+      dtype: object
+      values: [ 'Gd' ,'TA' ,'Ex', 'Fa' ]
+    - name: Functional
+      dtype: object
+      values: [ 'Typ', 'Min1', 'Maj1' ,'Min2' ,'Mod', 'Maj2' ,'Sev' ]
+    - name: FireplaceQu
+      dtype: object
+      values: [ nan, 'TA' ,'Gd', 'Fa' ,'Ex' ,'Po' ]
+    - name: GarageType
+      dtype: object
+      values: [ 'Attchd' ,'Detchd', 'BuiltIn', 'CarPort', nan ,'Basment', '2Types' ]
+    - name: GarageFinish
+      dtype: object
+      values: [ 'RFn', 'Unf', 'Fin' ,nan ]
+    - name: GarageQual
+      dtype: object
+      values: [ 'TA' ,'Fa' ,'Gd', nan, 'Ex' ,'Po' ]
+    - name: GarageCond
+      dtype: object
+      values: [ 'TA', 'Fa' ,nan, 'Gd', 'Po', 'Ex' ]
+    - name: PavedDrive
+      dtype: object
+      values: [ 'Y' ,'N' ,'P' ]
+    - name: PoolQC
+      dtype: object
+      values: [ nan ,'Ex' ,'Fa' ,'Gd' ]
+    - name: Fence
+      dtype: object
+      values: [ nan ,'MnPrv', 'GdWo' ,'GdPrv' ,'MnWw' ]
+    - name: MiscFeature
+      dtype: object
+      values: [ nan ,'Shed' ,'Gar2', 'Othr' ,'TenC' ]
+    - name: SaleType
+      dtype: object
+      values: [ 'WD', 'New', 'COD', 'ConLD' ,'ConLI', 'CWD', 'ConLw', 'Con' ,'Oth' ]
+    - name: SaleCondition
+      dtype: object
+      values: [ 'Normal' ,'Abnorml', 'Partial', 'AdjLand', 'Alloca', 'Family' ]
+  numeric:
+    - name: Id
+      dtype: int64
+      min: 1
+      max: 1460
+    - name: MSSubClass
+      dtype: int64
+      min: 20
+      max: 190
+    - name: LotFrontage
+      dtype: float64
+      min: 21.0
+      max: 313.0
+    - name: LotArea
+      dtype: int64
+      min: 1300
+      max: 215245
+    - name: OverallQual
+      dtype: int64
+      min: 1
+      max: 10
+    - name: OverallCond
+      dtype: int64
+      min: 1
+      max: 9
+    - name: YearBuilt
+      dtype: int64
+      min: 1872
+      max: 2010
+    - name: YearRemodAdd
+      dtype: int64
+      min: 1950
+      max: 2010
+    - name: MasVnrArea
+      dtype: float64
+      min: 0.0
+      max: 1600.0
+    - name: BsmtFinSF1
+      dtype: int64
+      min: 0
+      max: 5644
+    - name: BsmtFinSF2
+      dtype: int64
+      min: 0
+      max: 1474
+    - name: BsmtUnfSF
+      dtype: int64
+      min: 0
+      max: 2336
+    - name: TotalBsmtSF
+      dtype: int64
+      min: 0
+      max: 6110
+    - name: 1stFlrSF
+      dtype: int64
+      min: 334
+      max: 4692
+    - name: 2ndFlrSF
+      dtype: int64
+      min: 0
+      max: 2065
+    - name: LowQualFinSF
+      dtype: int64
+      min: 0
+      max: 572
+    - name: GrLivArea
+      dtype: int64
+      min: 334
+      max: 5642
+    - name: BsmtFullBath
+      dtype: int64
+      min: 0
+      max: 3
+    - name: BsmtHalfBath
+      dtype: int64
+      min: 0
+      max: 2
+    - name: FullBath
+      dtype: int64
+      min: 0
+      max: 3
+    - name: HalfBath
+      dtype: int64
+      min: 0
+      max: 2
+    - name: BedroomAbvGr
+      dtype: int64
+      min: 0
+      max: 8
+    - name: KitchenAbvGr
+      dtype: int64
+      min: 0
+      max: 3
+    - name: TotRmsAbvGrd
+      dtype: int64
+      min: 2
+      max: 14
+    - name: Fireplaces
+      dtype: int64
+      min: 0
+      max: 3
+    - name: GarageYrBlt
+      dtype: float64
+      min: 1900.0
+      max: 2010.0
+    - name: GarageCars
+      dtype: int64
+      min: 0
+      max: 4
+    - name: GarageArea
+      dtype: int64
+      min: 0
+      max: 1418
+    - name: WoodDeckSF
+      dtype: int64
+      min: 0
+      max: 857
+    - name: OpenPorchSF
+      dtype: int64
+      min: 0
+      max: 547
+    - name: EnclosedPorch
+      dtype: int64
+      min: 0
+      max: 552
+    - name: 3SsnPorch
+      dtype: int64
+      min: 0
+      max: 508
+    - name: ScreenPorch
+      dtype: int64
+      min: 0
+      max: 480
+    - name: PoolArea
+      dtype: int64
+      min: 0
+      max: 738
+    - name: MiscVal
+      dtype: int64
+      min: 0
+      max: 15500
+    - name: MoSold
+      dtype: int64
+      min: 1
+      max: 12
+    - name: YrSold
+      dtype: int64
+      min: 2006
+      max: 2010
+    - name: SalePrice
+      dtype: int64
+      min: 34900
+      max: 755000
+metric:
+  primary: mean_absolute_percentage_error
+  additional:
+  - R2
+  - mean_absolute_error
+  - root_mean_squared_error
+search:
+  method: grid
+  cv: 5
+  scoring: neg_mean_absolute_error
+search_space:
+  preprocessing:
+    numeric_impute:
+      type: categorical
+      values:
+        - median
+        - mean
+    numeric_scale:
+      type: categorical
+      values:
+        - standard
+        - minmax
+    categorical_encode:
+      type: categorical
+      values:
+        - onehot
+        - ordinal
+  models:
+  #XGBRFRegressor:
+     # parameters:
+     #   'n_estimators': [ 200,300,500,600 ]
+     #   'learning_rate': [ 0.01,0.05,0.1,0.5,1 ]
+   # LGBMRegressor:
+    #  parameters:
+     #   'n_estimators': [ 200,300,500,600 ]
+     #   'learning_rate': [ 0.01,0.05,0.1,0.5,1 ]
+    GradientBoostingRegressor:
+      parameters:
+        'n_estimators': [ 200] #,300,500,600 ]
+        'learning_rate': [ 0.01] #,0.05,0.1,0.5,1 ]
+tuning:
+  metric: rmse
+  direction: minimize
+  cv:
+    folds: 5
+    stratify: false
+  budget:
+    n_trials: 100
+    timeout_seconds: 900
+  seed: 42
+  seving:
+    class_names: []
+
+
+
+

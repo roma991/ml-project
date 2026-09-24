@@ -23,9 +23,6 @@ features:
     - name: Street
       dtype: object
       values: [ 'Pave' ,'Grvl' ]
-    - name: Alley
-      dtype: object
-      values: [ nan ,'Grvl' ,'Pave' ]
     - name: LotShape
       dtype: object
       values: [ 'Reg' ,'IR1' ,'IR2' ,'IR3' ]
@@ -76,9 +73,6 @@ features:
       values: [ 'VinylSd' ,'MetalSd', 'Wd Shng' ,'HdBoard', 'Plywood', 'Wd Sdng' ,'CmentBd',
                 'BrkFace' ,'Stucco' ,'AsbShng', 'Brk Cmn', 'ImStucc', 'AsphShn', 'Stone',
                 'Other' ,'CBlock' ]
-    - name: MasVnrType
-      dtype: object
-      values: [ 'BrkFace', nan ,'Stone' ,'BrkCmn' ]
     - name: ExterQual
       dtype: object
       values: [ 'Gd' ,'TA' ,'Ex', 'Fa' ]
@@ -121,9 +115,6 @@ features:
     - name: Functional
       dtype: object
       values: [ 'Typ', 'Min1', 'Maj1' ,'Min2' ,'Mod', 'Maj2' ,'Sev' ]
-    - name: FireplaceQu
-      dtype: object
-      values: [ nan, 'TA' ,'Gd', 'Fa' ,'Ex' ,'Po' ]
     - name: GarageType
       dtype: object
       values: [ 'Attchd' ,'Detchd', 'BuiltIn', 'CarPort', nan ,'Basment', '2Types' ]
@@ -139,15 +130,6 @@ features:
     - name: PavedDrive
       dtype: object
       values: [ 'Y' ,'N' ,'P' ]
-    - name: PoolQC
-      dtype: object
-      values: [ nan ,'Ex' ,'Fa' ,'Gd' ]
-    - name: Fence
-      dtype: object
-      values: [ nan ,'MnPrv', 'GdWo' ,'GdPrv' ,'MnWw' ]
-    - name: MiscFeature
-      dtype: object
-      values: [ nan ,'Shed' ,'Gar2', 'Othr' ,'TenC' ]
     - name: SaleType
       dtype: object
       values: [ 'WD', 'New', 'COD', 'ConLD' ,'ConLI', 'CWD', 'ConLw', 'Con' ,'Oth' ]
@@ -159,10 +141,6 @@ features:
       dtype: int64
       min: 1
       max: 1460
-    - name: MSSubClass
-      dtype: int64
-      min: 20
-      max: 190
     - name: LotFrontage
       dtype: float64
       min: 21.0

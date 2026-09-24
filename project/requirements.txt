@@ -1,9 +1,7 @@
 pandas
-numpy
 scikit-learn
-PyYaml
+PyYAML
+joblib
 fastapi
 uvicorn
-joblib
-matplotlib
-
+python-multipart

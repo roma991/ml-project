@@ -90,7 +90,7 @@ metric:
 search:
   method: grid
   cv: 5
-  scoring: accuracy
+  scoring: roc_auc
 search_space:
   preprocessing:
     numeric_impute:

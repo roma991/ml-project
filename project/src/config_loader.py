@@ -1,15 +1,15 @@
+from pathlib import Path
 import yaml
 
-def load_config(config_path):
 
-    full_path = f"/Users/ramaldan/Desktop/PythonProject/project/{config_path}"
-    with open(full_path, 'r') as file:
-        config = yaml.safe_load(file)
-    return config
+def load_config(path):
+    path = Path(path)
 
-def get_config_paths():
-    return [
-        'config/churn.yaml',
-        'config/house_prices.yaml',
-        'config/wine.yaml'
-    ]
+    if path.exists():
+        full_path = path
+    else:
+        project_dir = Path(__file__).resolve().parent.parent
+        full_path = project_dir / path
+
+    with open(full_path, "r") as file:
+        return yaml.safe_load(file)

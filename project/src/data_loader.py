@@ -15,7 +15,7 @@ def load_data(config):
 
 
 def drop_columns(df, config):
-    drop_columns = config['features'].get('drop_columns', [])
+    drop_columns = config['dataset'].get('drop_columns', [])
     df = df.drop(columns=drop_columns, errors='ignore')
     return df
 

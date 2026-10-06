@@ -50,14 +50,15 @@ def main():
     preprocessor = create_preprocessor(config)
     results = []
 
-    for model_name, model_config in config["search_space"]["models"].items():
+    for model_config in config["search_space"]["models"]:
+
+        model_name = model_config["name"]
+        model_class = model_config["class"]
+        parameters = model_config["parameters"]
 
         print("\nОбучаем модель:", model_name)
 
-        model = get_model(model_name)
-
-        parameters = model_config["parameters"]
-
+        model = get_model(model_class)
         search = train_model(
             model,
             parameters,

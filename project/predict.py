@@ -11,3 +11,4 @@
 #         n.append(x)
 # for x in n:
 #     print(f'- name: {x}', f'  dtype: {df[x].dtype}', f'  min: {min(df[x].unique())}',f'  max: {max(df[x].unique())}', sep='\n')
+from sklearn.ensemble import AdaBoostClassifier

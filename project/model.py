@@ -1,20 +1,18 @@
-from sklearn.ensemble import (
-    RandomForestClassifier,
-    GradientBoostingClassifier,
-    GradientBoostingRegressor
-)
-from sklearn.linear_model import LogisticRegression
+import importlib
 
+def get_model(class_path, parameters=None):
+    parameters = parameters or {}
 
-def get_model(name):
-    models = {
-        "LogisticRegression": LogisticRegression(random_state=42),
-        "RandomForestClassifier": RandomForestClassifier(random_state=42),
-        "GradientBoostingClassifier": GradientBoostingClassifier(random_state=42),
-        "GradientBoostingRegressor": GradientBoostingRegressor(random_state=42)
-    }
+    module_name, class_name = class_path.rsplit(".", 1)
 
-    if name not in models:
-        raise ValueError(f"Неизвестная модель: {name}")
+    module = importlib.import_module(module_name)
 
-    return models[name]
+    if not hasattr(module, class_name):
+        raise ValueError(
+            f"Класс модели '{class_name}' не найден "
+            f"в модуле '{module_name}'"
+        )
+
+    model_class = getattr(module, class_name)
+
+    return model_class(**parameters)

@@ -27,7 +27,6 @@ def get_models():
         path.stem
         for path in MODELS_DIR.glob("*.joblib")
     ]
-
     return {
         "models": models
     }
@@ -143,76 +142,6 @@ def get_config_models(config_name: str):
         "task": config["task"],
         "models": available_models
     }
-
-def validate_features(config, features):
-
-    errors = []
-
-    target = config["dataset"]["target"]
-    drop_columns = config["dataset"]["drop_columns"]
-
-    expected_features = []
-
-    for feature in config["features"]["numeric"]:
-        expected_features.append(feature["name"])
-
-    for feature in config["features"]["categorial"]:
-        expected_features.append(feature["name"])
-
-    # Убираем target
-    expected_features.remove(target)
-
-    # Убираем колонки, которые должны быть удалены
-    expected_features = [
-        feature
-        for feature in expected_features
-        if feature not in drop_columns
-    ]
-
-    missing_features = [
-        feature
-        for feature in expected_features
-        if feature not in features
-    ]
-
-    extra_features = [
-        feature
-        for feature in features
-        if feature not in expected_features
-    ]
-
-    if missing_features:
-        errors.append({
-            "type": "missing_features",
-            "features": missing_features
-        })
-
-    if extra_features:
-        errors.append({
-            "type": "extra_features",
-            "features": extra_features
-        })
-
-    for feature in config["features"]["categorial"]:
-
-        name = feature["name"]
-
-        if name not in expected_features:
-            continue
-
-        if name in features and "values" in feature:
-
-            allowed_values = feature["values"]
-
-            if features[name] not in allowed_values:
-                errors.append({
-                    "type": "invalid_value",
-                    "feature": name,
-                    "value": features[name],
-                    "allowed_values": allowed_values
-                })
-
-    return errors
 @app.post("/predict")
 def predict(data: dict):
 

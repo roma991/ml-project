@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+.git/
+.gitignore
+README.ipynb
+README.md
+requirements.txt

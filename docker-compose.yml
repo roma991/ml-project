@@ -1,0 +1,9 @@
+services:
+  ml-api:
+    build: .
+    ports:
+      - "8003:8002"
+    volumes:
+      - ./project/models:/app/project/models
+      - ./project/config:/app/project/config
+      - ./project/data:/app/project/data

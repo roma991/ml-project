@@ -1,12 +1,10 @@
 version: "1.0.0"
 task: regression
-name: 'house_prices'
+name: house_prices
+
 dataset:
   path: data/house_prices.csv
   target: SalePrice
-  split:
-    test_size: 0.2
-    random_state: 42
   drop_columns:
     - Id
     - PoolQC
@@ -15,132 +13,135 @@ dataset:
     - FireplaceQu
     - MasVnrType
     - Alley
+  split:
+    test_size: 0.2
+    random_state: 42
+    stratify: false
+
 features:
   categorial:
     - name: MSZoning
       dtype: object
-      values: [ 'RL' ,'RM', 'C (all)' ,'FV' ,'RH' ]
+      values: [ 'RL', 'RM', 'C (all)', 'FV', 'RH' ]
     - name: Street
       dtype: object
-      values: [ 'Pave' ,'Grvl' ]
+      values: [ 'Pave', 'Grvl' ]
     - name: LotShape
       dtype: object
-      values: [ 'Reg' ,'IR1' ,'IR2' ,'IR3' ]
+      values: [ 'Reg', 'IR1', 'IR2', 'IR3' ]
     - name: LandContour
       dtype: object
-      values: [ 'Lvl' ,'Bnk' ,'Low' ,'HLS' ]
+      values: [ 'Lvl', 'Bnk', 'Low', 'HLS' ]
     - name: Utilities
       dtype: object
       values: [ 'AllPub', 'NoSeWa' ]
     - name: LotConfig
       dtype: object
-      values: [ 'Inside' ,'FR2' ,'Corner', 'CulDSac', 'FR3' ]
+      values: [ 'Inside', 'FR2', 'Corner', 'CulDSac', 'FR3' ]
     - name: LandSlope
       dtype: object
-      values: [ 'Gtl' ,'Mod' ,'Sev' ]
+      values: [ 'Gtl', 'Mod', 'Sev' ]
     - name: Neighborhood
       dtype: object
-      values: [ 'CollgCr', 'Veenker' ,'Crawfor' ,'NoRidge', 'Mitchel', 'Somerst', 'NWAmes',
-                'OldTown' ,'BrkSide' ,'Sawyer', 'NridgHt' ,'NAmes', 'SawyerW', 'IDOTRR',
-                'MeadowV' ,'Edwards', 'Timber', 'Gilbert' ,'StoneBr' ,'ClearCr', 'NPkVill',
-                'Blmngtn' ,'BrDale' ,'SWISU' ,'Blueste' ]
+      values: [ 'CollgCr', 'Veenker', 'Crawfor', 'NoRidge', 'Mitchel', 'Somerst',
+                'NWAmes', 'OldTown', 'BrkSide', 'Sawyer', 'NridgHt', 'NAmes',
+                'SawyerW', 'IDOTRR', 'MeadowV', 'Edwards', 'Timber', 'Gilbert',
+                'StoneBr', 'ClearCr', 'NPkVill', 'Blmngtn', 'BrDale', 'SWISU',
+                'Blueste' ]
     - name: Condition1
       dtype: object
-      values: [ 'Norm' ,'Feedr' ,'PosN' ,'Artery', 'RRAe' ,'RRNn' ,'RRAn' ,'PosA' ,'RRNe' ]
+      values: [ 'Norm', 'Feedr', 'PosN', 'Artery', 'RRAe', 'RRNn', 'RRAn', 'PosA', 'RRNe' ]
     - name: Condition2
       dtype: object
-      values: [ 'Norm', 'Artery' ,'RRNn' ,'Feedr' ,'PosN' ,'PosA' ,'RRAn' ,'RRAe' ]
+      values: [ 'Norm', 'Artery', 'RRNn', 'Feedr', 'PosN', 'PosA', 'RRAn', 'RRAe' ]
     - name: BldgType
       dtype: object
-      values: [ '1Fam', '2fmCon', 'Duplex' ,'TwnhsE' ,'Twnhs' ]
+      values: [ '1Fam', '2fmCon', 'Duplex', 'TwnhsE', 'Twnhs' ]
     - name: HouseStyle
       dtype: object
-      values: [ '2Story' ,'1Story' ,'1.5Fin', '1.5Unf', 'SFoyer' ,'SLvl', '2.5Unf' ,'2.5Fin' ]
+      values: [ '2Story', '1Story', '1.5Fin', '1.5Unf', 'SFoyer', 'SLvl', '2.5Unf', '2.5Fin' ]
     - name: RoofStyle
       dtype: object
-      values: [ 'Gable', 'Hip' ,'Gambrel' ,'Mansard' ,'Flat' ,'Shed' ]
+      values: [ 'Gable', 'Hip', 'Gambrel', 'Mansard', 'Flat', 'Shed' ]
     - name: RoofMatl
       dtype: object
-      values: [ 'CompShg' ,'WdShngl' ,'Metal', 'WdShake', 'Membran', 'Tar&Grv', 'Roll',
-                'ClyTile' ]
+      values: [ 'CompShg', 'WdShngl', 'Metal', 'WdShake', 'Membran', 'Tar&Grv',
+                'Roll', 'ClyTile' ]
     - name: Exterior1st
       dtype: object
-      values: [ 'VinylSd', 'MetalSd', 'Wd Sdng' ,'HdBoard' ,'BrkFace', 'WdShing', 'CemntBd',
-                'Plywood' ,'AsbShng' ,'Stucco' ,'BrkComm', 'AsphShn', 'Stone' ,'ImStucc',
-                'CBlock' ]
+      values: [ 'VinylSd', 'MetalSd', 'Wd Sdng', 'HdBoard', 'BrkFace', 'WdShing',
+                'CemntBd', 'Plywood', 'AsbShng', 'Stucco', 'BrkComm', 'AsphShn',
+                'Stone', 'ImStucc', 'CBlock' ]
     - name: Exterior2nd
       dtype: object
-      values: [ 'VinylSd' ,'MetalSd', 'Wd Shng' ,'HdBoard', 'Plywood', 'Wd Sdng' ,'CmentBd',
-                'BrkFace' ,'Stucco' ,'AsbShng', 'Brk Cmn', 'ImStucc', 'AsphShn', 'Stone',
-                'Other' ,'CBlock' ]
+      values: [ 'VinylSd', 'MetalSd', 'Wd Shng', 'HdBoard', 'Plywood', 'Wd Sdng',
+                'CmentBd', 'BrkFace', 'Stucco', 'AsbShng', 'Brk Cmn', 'ImStucc',
+                'AsphShn', 'Stone', 'Other', 'CBlock' ]
     - name: ExterQual
       dtype: object
-      values: [ 'Gd' ,'TA' ,'Ex', 'Fa' ]
+      values: [ 'Gd', 'TA', 'Ex', 'Fa' ]
     - name: ExterCond
       dtype: object
-      values: [ 'TA', 'Gd' ,'Fa' ,'Po' ,'Ex' ]
+      values: [ 'TA', 'Gd', 'Fa', 'Po', 'Ex' ]
     - name: Foundation
       dtype: object
-      values: [ 'PConc' ,'CBlock' ,'BrkTil', 'Wood', 'Slab', 'Stone' ]
+      values: [ 'PConc', 'CBlock', 'BrkTil', 'Wood', 'Slab', 'Stone' ]
     - name: BsmtQual
       dtype: object
-      values: [ 'Gd' ,'TA', 'Ex', nan ,'Fa' ]
+      values: [ 'Gd', 'TA', 'Ex', null, 'Fa' ]
     - name: BsmtCond
       dtype: object
-      values: [ 'TA', 'Gd' ,nan ,'Fa' ,'Po' ]
+      values: [ 'TA', 'Gd', null, 'Fa', 'Po' ]
     - name: BsmtExposure
       dtype: object
-      values: [ 'No' ,'Gd', 'Mn', 'Av' ,nan ]
+      values: [ 'No', 'Gd', 'Mn', 'Av', null ]
     - name: BsmtFinType1
       dtype: object
-      values: [ 'GLQ' ,'ALQ' ,'Unf' ,'Rec', 'BLQ', nan ,'LwQ' ]
+      values: [ 'GLQ', 'ALQ', 'Unf', 'Rec', 'BLQ', null, 'LwQ' ]
     - name: BsmtFinType2
       dtype: object
-      values: [ 'Unf' ,'BLQ', nan, 'ALQ' ,'Rec', 'LwQ', 'GLQ' ]
+      values: [ 'Unf', 'BLQ', null, 'ALQ', 'Rec', 'LwQ', 'GLQ' ]
     - name: Heating
       dtype: object
-      values: [ 'GasA', 'GasW' ,'Grav', 'Wall', 'OthW', 'Floor' ]
+      values: [ 'GasA', 'GasW', 'Grav', 'Wall', 'OthW', 'Floor' ]
     - name: HeatingQC
       dtype: object
-      values: [ 'Ex', 'Gd', 'TA' ,'Fa' ,'Po' ]
+      values: [ 'Ex', 'Gd', 'TA', 'Fa', 'Po' ]
     - name: CentralAir
       dtype: object
-      values: [ 'Y' ,'N' ]
+      values: [ 'Y', 'N' ]
     - name: Electrical
       dtype: object
-      values: [ 'SBrkr' ,'FuseF', 'FuseA', 'FuseP' ,'Mix', nan ]
+      values: [ 'SBrkr', 'FuseF', 'FuseA', 'FuseP', 'Mix', null ]
     - name: KitchenQual
       dtype: object
-      values: [ 'Gd' ,'TA' ,'Ex', 'Fa' ]
+      values: [ 'Gd', 'TA', 'Ex', 'Fa' ]
     - name: Functional
       dtype: object
-      values: [ 'Typ', 'Min1', 'Maj1' ,'Min2' ,'Mod', 'Maj2' ,'Sev' ]
+      values: [ 'Typ', 'Min1', 'Maj1', 'Min2', 'Mod', 'Maj2', 'Sev' ]
     - name: GarageType
       dtype: object
-      values: [ 'Attchd' ,'Detchd', 'BuiltIn', 'CarPort', nan ,'Basment', '2Types' ]
+      values: [ 'Attchd', 'Detchd', 'BuiltIn', 'CarPort', null, 'Basment', '2Types' ]
     - name: GarageFinish
       dtype: object
-      values: [ 'RFn', 'Unf', 'Fin' ,nan ]
+      values: [ 'RFn', 'Unf', 'Fin', null ]
     - name: GarageQual
       dtype: object
-      values: [ 'TA' ,'Fa' ,'Gd', nan, 'Ex' ,'Po' ]
+      values: [ 'TA', 'Fa', 'Gd', null, 'Ex', 'Po' ]
     - name: GarageCond
       dtype: object
-      values: [ 'TA', 'Fa' ,nan, 'Gd', 'Po', 'Ex' ]
+      values: [ 'TA', 'Fa', null, 'Gd', 'Po', 'Ex' ]
     - name: PavedDrive
       dtype: object
-      values: [ 'Y' ,'N' ,'P' ]
+      values: [ 'Y', 'N', 'P' ]
     - name: SaleType
       dtype: object
-      values: [ 'WD', 'New', 'COD', 'ConLD' ,'ConLI', 'CWD', 'ConLw', 'Con' ,'Oth' ]
+      values: [ 'WD', 'New', 'COD', 'ConLD', 'ConLI', 'CWD', 'ConLw', 'Con', 'Oth' ]
     - name: SaleCondition
       dtype: object
-      values: [ 'Normal' ,'Abnorml', 'Partial', 'AdjLand', 'Alloca', 'Family' ]
+      values: [ 'Normal', 'Abnorml', 'Partial', 'AdjLand', 'Alloca', 'Family' ]
+
   numeric:
-    - name: Id
-      dtype: int64
-      min: 1
-      max: 1460
     - name: LotFrontage
       dtype: float64
       min: 21.0
@@ -281,20 +282,18 @@ features:
       dtype: int64
       min: 2006
       max: 2010
-    - name: SalePrice
-      dtype: int64
-      min: 34900
-      max: 755000
+
 metric:
-  primary: mean_absolute_percentage_error
+  primary: r2
   additional:
-  - R2
-  - mean_absolute_error
-  - root_mean_squared_error
+    - mean_absolute_error
+    - root_mean_squared_error
+
 search:
-  method: grid
+  method: optuna
   cv: 5
-  scoring: neg_mean_absolute_error
+  scoring: neg_root_mean_squared_error
+
 search_space:
   preprocessing:
     numeric_impute:
@@ -307,38 +306,33 @@ search_space:
       values:
         - standard
         - minmax
+        - none
     categorical_encode:
       type: categorical
       values:
         - onehot
         - ordinal
+
   models:
-  #XGBRFRegressor:
-     # parameters:
-     #   'n_estimators': [ 200,300,500,600 ]
-     #   'learning_rate': [ 0.01,0.05,0.1,0.5,1 ]
-   # LGBMRegressor:
-    #  parameters:
-     #   'n_estimators': [ 200,300,500,600 ]
-     #   'learning_rate': [ 0.01,0.05,0.1,0.5,1 ]
-   name: GradientBoostingRegressor
-   class: sklearn.ensemble.GradientBoostingRegressor
-   parameters:
-        'n_estimators': [ 200] #,300,500,600 ]
-        'learning_rate': [ 0.01] #,0.05,0.1,0.5,1 ]
+    - name: GradientBoostingRegressor
+      class: sklearn.ensemble.GradientBoostingRegressor
+      parameters:
+        n_estimators: [100, 200, 300]
+        learning_rate: [0.01, 0.05, 0.1]
+        max_depth: [2, 3, 5]
+
+    - name: Ridge
+      class: sklearn.linear_model.Ridge
+      parameters:
+        alpha: [0.1, 1.0, 10.0]
+
 tuning:
-  metric: rmse
-  direction: minimize
+  metric: neg_root_mean_squared_error
+  direction: maximize
   cv:
     folds: 5
     stratify: false
   budget:
-    n_trials: 100
+    n_trials: 30
     timeout_seconds: 900
   seed: 42
-  seving:
-    class_names: []
-
-
-
-
